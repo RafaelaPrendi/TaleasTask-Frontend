@@ -3,56 +3,56 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const [users, setUser] = useState([]);
+  const [students, setStudent] = useState([]);
 
   useEffect(() => {
-    loadUsers();
+    loadStudents();
   }, []);
 
-  const loadUsers = async () => {
-    const result = await axios.get("https://jsonplaceholder.typicode.com/users");
-    setUser(result.data.reverse());
+  const loadStudents = async () => {
+    const result = await axios.get("http://localhost:5000/students");
+    setStudent(result.data.reverse());
   };
 
-  const deleteUser = async id => {
-    await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
-    loadUsers();
+  const deleteStudent = async id => {
+    await axios.delete(`http://localhost:5000/students/${id}`);
+    loadStudents();
   };
 
   return (
-    <div classNameName="container">
-      <div classNameName="py-4">
-        <h1>Home Page</h1>
+    <div className="container">
+      <div classnamename="py-4">
+        <h3>Students list</h3>
         <table className="table border shadow">
           <thead className="thead-dark">
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
-              <th scope="col">User Name</th>
-              <th scope="col">Email</th>
+              <th scope="col">Age</th>
+              <th scope="col">Courses</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
-              <tr>
+            {students.map((student, index) => (
+              <tr key={student.id}>
                 <th scope="row">{index + 1}</th>
-                <td>{user.name}</td>
-                <td>{user.username}</td>
-                <td>{user.email}</td>
+                <td>{student.name}</td>
+                <td>{student.age}</td>
+                <td>{student.courses}</td>
                 <td>
-                  <Link className="btn btn-primary mr-2" to={`/users/${user.id}`}>
+                  <Link className="btn btn-primary mr-2" to={`/students/${student.id}`}>
                     View
                   </Link>
                   <Link
                     className="btn btn-outline-primary mr-2"
-                    to={`/users/edit/${user.id}`}
+                    to={`/students/edit/${student.id}`}
                   >
                     Edit
                   </Link>
                   <Link
                     className="btn btn-danger"
-                    onClick={() => deleteUser(user.id)}
+                    onClick={() => deleteStudent(student.id)}
                   >
                     Delete
                   </Link>

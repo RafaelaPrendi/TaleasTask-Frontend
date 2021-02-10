@@ -1,11 +1,15 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import {UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem} from 'reactstrap';
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container">
         <Link className="navbar-brand" href="/">
-          Recat User
+          React School
         </Link>
         <button
           className="navbar-toggler"
@@ -36,11 +40,38 @@ const Navbar = () => {
                 Contact
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" exact to="/courses">
+                Courses
+              </NavLink>
+            </li>
+               <li className="nav-item">
+              <NavLink className="nav-link" exact to="/teachers">
+                Teachers
+              </NavLink>
+            </li>
           </ul>
         </div>
-
-        <Link className="btn btn-outline-light" to="/users/add">Add User</Link>
-      </div>
+   <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav>
+                <button className="btn btn-outline-light" >
+                  More Actions
+                </button>
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>
+                <Link className="btn btn-outline-primary" to="/students/add">Add Students</Link>
+                </DropdownItem>
+                <DropdownItem>
+                <Link className="btn btn-outline-primary" to="/courses/add">Add Courses</Link>
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>
+                <Link className="btn btn-outline-primary" to="/teachers/add">Add Teachers</Link>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>        
+ </div>
     </nav>
   );
 };
