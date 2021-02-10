@@ -16,7 +16,7 @@ const Teacher = () =>{
     }, []);
 
     const loadTeacher = async () => {
-        const result = await axios.get(`http://localhost:5000/teacherss/${id}`);
+        const result = await axios.get(`http://localhost:5000/teachers/${id}`);
         setTeacher(result.data);
   };
   return(

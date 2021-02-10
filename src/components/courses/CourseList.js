@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const CourseList = () =>{
     const [courses, setCourse] = useState([]);
+    let history = useHistory();
 
     useEffect(()=>{
         loadCourses();
@@ -23,6 +24,7 @@ const CourseList = () =>{
     const deleteCourse = async id =>{
         await axios.delete(`https://localhost:5000/courses/${id}`);
         loadCourses();
+        history.push("/courses");
     };
 
     return(

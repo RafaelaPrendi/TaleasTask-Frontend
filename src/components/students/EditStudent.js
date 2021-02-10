@@ -10,15 +10,16 @@ const EditStudent = () => {
     age: "",
     courses: ""
   });
+  
+  useEffect(() => {
+    loadStudent();
+  }, []);
 
   const { name, age, courses } = student;
   const onInputChange = e => {
     setStudent({ ...student, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-    loadStudent();
-  }, []);
 
   const onSubmit = async e => {
     e.preventDefault();

@@ -46,10 +46,10 @@ function App(props) {
           <Route exact path="/courses/:id" component={Course} />
           <Route exact path="/courses" component={CourseList} />
 
-          <Route exact path="/teachers/add" component={AddTeacher} />
           <Route exact path="/teachers/edit/:id" component={EditTeacher} />
           <Route exact path="/teachers/:id" component={Teacher} />
           <Route exact path="/teachers" component={TeacherList} />
+          <Route exact path="/teachers/add" component={AddTeacher} /> 
 
           <Route component={NotFound} />
         </Switch>

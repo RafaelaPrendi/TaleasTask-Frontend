@@ -40,7 +40,7 @@ const AddCourse = () => {
             <input
               type="text"
               className="form-control form-control-lg"
-              placeholder="Enter the name"
+              placeholder="Enter the description"
               name="description"
               value={description}
               onChange={e => onInputChange(e)}
@@ -60,7 +60,7 @@ const AddCourse = () => {
             <input
               type="text"
               className="form-control form-control-lg"
-              placeholder="Enter Your Courses"
+              placeholder="Enter the students"
               name="students"
               value={students}
               onChange={e => onInputChange(e)}

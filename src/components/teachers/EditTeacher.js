@@ -3,7 +3,7 @@ import axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
 
 const EditTeacher = () =>{
-    let history = useHistory();
+  let history = useHistory();
   const { id } = useParams();
   const [teacher, setTeacher] = useState({
         name: "",
@@ -20,13 +20,13 @@ const EditTeacher = () =>{
     }, []);
 
     const loadTeacher = async () => {
-        const result = await axios.get(`http://localhost:5000/teacherss/${id}`);
+        const result = await axios.get(`http://localhost:5000/teachers/${id}`);
         setTeacher(result.data);
   };
 
      const onSubmit = async e =>{
         e.preventDefault();
-        await axios.post(`http://localhost:5000/teacherss/${id}`, teacher);
+        await axios.put(`http://localhost:5000/teachers/${id}`, teacher);
          history.push("/"); 
     };
     return(

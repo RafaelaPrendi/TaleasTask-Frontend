@@ -65,7 +65,6 @@ const Navbar = () => {
                 <DropdownItem>
                 <Link className="btn btn-outline-primary" to="/courses/add">Add Courses</Link>
                 </DropdownItem>
-                <DropdownItem divider />
                 <DropdownItem>
                 <Link className="btn btn-outline-primary" to="/teachers/add">Add Teachers</Link>
                 </DropdownItem>
