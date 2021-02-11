@@ -7,7 +7,7 @@ const AddStudent = () => {
   const [student, setStudent] = useState({
     name: "",
     age: "",
-    courses: ""
+    courses: []
   });
 
   const { name, age, courses} = student;

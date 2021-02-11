@@ -9,7 +9,7 @@ const AddTeacher = () => {
         name: "",
         subject: "",
         contact:"",
-        courses:"",
+        courses:[]
     });
     const { name, subject, contact, courses} = teacher;
     const onInputChange = e =>{
@@ -18,7 +18,7 @@ const AddTeacher = () => {
     const onSubmit = async e =>{
        e.preventDefault();
     await axios.post("http://localhost:5000/teachers", teacher);
-    history.push("/"); 
+    history.push("/teachers"); 
     };
     return(
      <div className="container">
@@ -73,4 +73,4 @@ const AddTeacher = () => {
     );
 };
 
-export default Teacher;
+export default AddTeacher;

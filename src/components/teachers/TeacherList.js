@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useHistory} from "react-router-dom";
+import confirm from "reactstrap-confirm";
 
 const TeacherList = () =>{
     const [teachers, setTeacher] = useState([]);
@@ -15,9 +16,17 @@ const TeacherList = () =>{
         setTeacher(result.data.reverse());
     };
     const deleteTeacher = async id => {
-        await axios.delete(`http://localhost:5000/teachers/${id}`);
+       let result = await confirm({
+          message: "Are you sure you want to delete this?",
+        confirmText: "Delete",
+        confirmColor: "danger",
+        cancelColor: "link text-danger"
+    });
+    if(result){
+       await axios.delete(`http://localhost:5000/teachers/${id}`);
         history.push("/teachers");
-
+    }
+       
     };
     return(
            <div className="container">
@@ -30,7 +39,6 @@ const TeacherList = () =>{
               <th scope="col">Name</th>
               <th scope="col">Subject</th>
               <th scope="col">Contact</th>
-              <th scope="col">Courses</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -41,10 +49,9 @@ const TeacherList = () =>{
                 <td>{teacher.name}</td>
                 <td>{teacher.subject}</td>
                 <td>{teacher.contact}</td>
-                <td>{teacher.courses}</td>
                 <td>
                   <Link className="btn btn-primary mr-2" to={`/teachers/${teacher.id}`}>
-                    View
+                    View More
                   </Link>
                   <Link
                     className="btn btn-outline-primary mr-2"

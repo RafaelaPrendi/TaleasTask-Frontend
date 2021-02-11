@@ -9,7 +9,7 @@ const EditTeacher = () =>{
         name: "",
         subject: "",
         contact:"",
-        courses:"",
+        courses:[]
     });
     const { name, subject, contact, courses} = teacher;
     const onInputChange = e =>{
@@ -32,7 +32,7 @@ const EditTeacher = () =>{
     return(
         <div className="container">
       <div className="w-75 mx-auto shadow p-5">
-        <h2 className="text-center mb-4">Edit A Teacher</h2>
+        <h2 className="text-center mb-4">Edit This Teacher</h2>
         <form onSubmit={e => onSubmit(e)}>
           <div className="form-group">
             <input

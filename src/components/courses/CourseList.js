@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
+import confirm from "reactstrap-confirm";
 
 const CourseList = () =>{
     const [courses, setCourse] = useState([]);
@@ -12,8 +13,7 @@ const CourseList = () =>{
 
     const loadCourses = async () =>{
       try{ 
-        const result = await axios.get("https://localhost:5000/courses");
-        console.log(result);
+        const result = await axios.get("http://localhost:5000/courses");
         setCourse(result.data.reverse());
       }
       catch(error){
@@ -22,9 +22,18 @@ const CourseList = () =>{
        
     }
     const deleteCourse = async id =>{
-        await axios.delete(`https://localhost:5000/courses/${id}`);
+       let result = await confirm({
+            message: "Are you sure you want to delete this?",
+          confirmText: "Delete",
+          confirmColor: "danger",
+          cancelColor: "link text-danger"
+    });
+    if(result){
+      await axios.delete(`http://localhost:5000/courses/${id}`);
         loadCourses();
         history.push("/courses");
+    }
+        
     };
 
     return(
@@ -38,7 +47,6 @@ const CourseList = () =>{
               <th scope="col">Name</th>
               <th scope="col">Description</th>
               <th scope="col">Hours</th>
-              <th scope="col">Students</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -49,10 +57,9 @@ const CourseList = () =>{
                 <td>{course.name}</td>
                 <td>{course.description}</td>
                 <td>{course.hours}</td>
-                <td>{course.students}</td>
                 <td>
                   <Link className="btn btn-primary mr-2" to={`/courses/${course.id}`}>
-                    View
+                    View More
                   </Link>
                   <Link
                     className="btn btn-outline-primary mr-2"

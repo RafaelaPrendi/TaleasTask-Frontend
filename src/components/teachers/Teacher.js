@@ -8,7 +8,7 @@ const Teacher = () =>{
         name: "",
         subject: "",
         contact:"",
-        courses:"",
+        courses:[]
     });
 
      useEffect(() =>{
@@ -20,20 +20,24 @@ const Teacher = () =>{
         setTeacher(result.data);
   };
   return(
-    <div className="container py-4">
-      <Link className="btn btn-primary" to="/">
-        back to Home
-      </Link>
-      <h1 className="display-4">Teacher Id: {id}</h1>
-      <hr />
-      <ul className="list-group w-50" key={teacher.id}>
-        <li className="list-group-item">Name: {teacher.name}</li>
-        <li className="list-group-item">Subject: {teacher.subject}</li>
-        <li className="list-group-item">Contact: {teacher.contact}</li>
-        <li className="list-group-item">Courses: {teacher.courses}</li>
+    <div className="container py-4 card">
+      <ul className="list-group w-50 card-body" key={teacher.id}>
+        <h5 className="card-title">Teacher's Details</h5>
+        <li className="list-group-item"><strong>Name: </strong>{teacher.name}</li>
+        <li className="list-group-item"><strong>Subject: </strong>{teacher.subject}</li>
+        <li className="list-group-item"><strong>Contact: </strong>{teacher.contact}</li>
+        <li className="list-group-item"><strong>Courses: </strong>
+         <ul className="list-group w-50">
+          {teacher.courses.map((course)=>
+                    <li className="list-group-item" key={course.id}>{course.name}</li>)}
+        </ul></li>
       </ul>
+      <p>Teacher Id: {id}</p> 
+          <Link className=" card-link btn btn-success" to="/teachers">
+        Back to Teachers
+      </Link>
     </div>
-  );
+ );           
 };
 
 export default Teacher;

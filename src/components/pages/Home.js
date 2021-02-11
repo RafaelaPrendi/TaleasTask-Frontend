@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import confirm from "reactstrap-confirm";
+
 
 const Home = () => {
   const [students, setStudent] = useState([]);
@@ -13,10 +15,18 @@ const Home = () => {
     const result = await axios.get("http://localhost:5000/students");
     setStudent(result.data.reverse());
   };
-
+  
   const deleteStudent = async id => {
-    await axios.delete(`http://localhost:5000/students/${id}`);
+    let result = await confirm({
+      message: "Are you sure you want to delete this?",
+    confirmText: "Delete",
+    confirmColor: "danger",
+    cancelColor: "link text-danger"
+    });
+    if(result){
+      await axios.delete(`http://localhost:5000/students/${id}`);
     loadStudents();
+    }
   };
 
   return (
@@ -29,7 +39,6 @@ const Home = () => {
               <th scope="col">#</th>
               <th scope="col">Name</th>
               <th scope="col">Age</th>
-              <th scope="col">Courses</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -39,10 +48,9 @@ const Home = () => {
                 <th scope="row">{index + 1}</th>
                 <td>{student.name}</td>
                 <td>{student.age}</td>
-                <td>{student.courses}</td>
                 <td>
                   <Link className="btn btn-primary mr-2" to={`/students/${student.id}`}>
-                    View
+                    View More
                   </Link>
                   <Link
                     className="btn btn-outline-primary mr-2"

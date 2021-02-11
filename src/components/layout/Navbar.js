@@ -50,9 +50,7 @@ const Navbar = () => {
                 Teachers
               </NavLink>
             </li>
-          </ul>
-        </div>
-   <UncontrolledDropdown nav inNavbar>
+   <UncontrolledDropdown nav inNavbar right>
               <DropdownToggle nav>
                 <button className="btn btn-outline-light" >
                   More Actions
@@ -60,17 +58,19 @@ const Navbar = () => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                <Link className="btn btn-outline-primary" to="/students/add">Add Students</Link>
+                <Link className="btn btn-outline-primary" to="/students/add">Add New Student</Link>
                 </DropdownItem>
                 <DropdownItem>
-                <Link className="btn btn-outline-primary" to="/courses/add">Add Courses</Link>
+                <Link className="btn btn-outline-primary" to="/courses/add">Add New Course</Link>
                 </DropdownItem>
                 <DropdownItem>
-                <Link className="btn btn-outline-primary" to="/teachers/add">Add Teachers</Link>
+                <Link className="btn btn-outline-primary" to="/teachers/add">Add New Teacher</Link>
                 </DropdownItem>
               </DropdownMenu>
-            </UncontrolledDropdown>        
- </div>
+    </UncontrolledDropdown>
+              </ul>
+    </div>
+    </div>
     </nav>
   );
 };

@@ -8,7 +8,7 @@ const AddCourse = () => {
         name: "",
         description:"",
         hours: "",
-        students:""
+        students:[]
     });
     const {name, description, hours, students} = course;
     const onInputChange = e =>{
@@ -17,8 +17,9 @@ const AddCourse = () => {
 
     const onSubmit = async e => {
         e.preventDefault();
-        await axios.post("http://localhost:5000/students", course);
-        history.push("/");
+        console.log(course);
+        await axios.post("http://localhost:5000/courses", course);
+        history.push("/courses");
     };
 
     return(

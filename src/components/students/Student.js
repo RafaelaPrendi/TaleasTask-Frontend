@@ -6,7 +6,7 @@ const Student = () => {
   const [student, setStudent] = useState({
     name: "",
     age: "",
-    courses: ""
+    courses: []
   });
   const { id } = useParams();
   useEffect(() => {
@@ -17,17 +17,22 @@ const Student = () => {
     setStudent(res.data);
   };
   return (
-    <div className="container py-4">
-      <Link className="btn btn-primary" to="/">
-        back to Home
-      </Link>
-      <h1 className="display-4">Student Id: {id}</h1>
-      <hr />
-      <ul className="list-group w-50" key={student.id}>
-        <li className="list-group-item">name: {student.name}</li>
-        <li className="list-group-item">user name: {student.age}</li>
-        <li className="list-group-item">email: {student.courses}</li>
+    <div className="container py-4 card">
+      <ul className="list-group w-50 card-body" key={student.id}>
+        <h5 className="card-title">Student's Details</h5>
+        <li className="list-group-item"><strong>Name:</strong> {student.name}</li>
+        <li className="list-group-item"><strong>Age:</strong> {student.age}</li>
+        <li className="list-group-item"><strong>Courses:</strong>
+        <ul className="list-group w-50">
+          {student.courses.map((course)=>
+                    <li className="list-group-item" key={course.id}>{course.name}</li>)}
+        </ul>   
+         </li>
       </ul>
+      <Link className="card-link btn btn-sm btn-success" to="/">
+        Back to Students
+      </Link>
+        <p>Student Id: {id}</p>
     </div>
   );
 };

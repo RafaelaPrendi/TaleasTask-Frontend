@@ -10,7 +10,7 @@ const EditCourse = () =>{
         name: "",
         description:"",
         hours: "",
-        students:""
+        students:[]
     });
 
     const {name, description, hours, students} = course;
@@ -36,7 +36,7 @@ const EditCourse = () =>{
     return(
         <div className="container">
       <div className="w-75 mx-auto shadow p-5">
-        <h2 className="text-center mb-4">Add A Course</h2>
+           <h2 className="text-center mb-4">Edit This Course</h2>
         <form onSubmit={e => onSubmit(e)}>
           <div className="form-group">
             <input
