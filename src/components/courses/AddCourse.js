@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from 'axios'
 import { useHistory } from "react-router-dom";
+import Select from 'react-select';
+import { Label } from "reactstrap";
 
 const AddCourse = () => {
     let history = useHistory();
@@ -10,6 +12,11 @@ const AddCourse = () => {
         hours: "",
         students:[]
     });
+      const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+]
     const {name, description, hours, students} = course;
     const onInputChange = e =>{
         setCourse({...course, [e.target.name]: e.target.value});
@@ -25,7 +32,7 @@ const AddCourse = () => {
     return(
   <div className="container">
       <div className="w-75 mx-auto shadow p-5">
-        <h2 className="text-center mb-4">Add A Course</h2>
+        <h2 className="text-center mb-4 title">Add A Course</h2>
         <form onSubmit={e => onSubmit(e)}>
           <div className="form-group">
             <input
@@ -58,14 +65,21 @@ const AddCourse = () => {
             />
           </div>
           <div className="form-group">
-            <input
+            <Label>Student: </Label>
+              <Select
+            isMulti
+            name="students"
+            className="basic-multi-select"
+            classNamePrefix="select"
+            options={options}/>
+            {/* <input
               type="text"
               className="form-control form-control-lg"
               placeholder="Enter the students"
               name="students"
               value={students}
               onChange={e => onInputChange(e)}
-            />
+            /> */}
           </div>
         
           <button className="btn btn-primary btn-block">Add Course</button>

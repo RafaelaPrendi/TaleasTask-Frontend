@@ -6,11 +6,11 @@ import {UncontrolledDropdown,
   DropdownItem} from 'reactstrap';
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <div className="container">
-        <Link className="navbar-brand" href="/">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
+      <div>
+        {/* <Link className="navbar-brand" href="/">
           React School
-        </Link>
+        </Link> */}
         <button
           className="navbar-toggler"
           type="button"
@@ -20,7 +20,7 @@ const Navbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon">Toggle</span>
         </button>
 
         <div className="collapse navbar-collapse">
@@ -52,7 +52,7 @@ const Navbar = () => {
             </li>
    <UncontrolledDropdown nav inNavbar right>
               <DropdownToggle nav>
-                <button className="btn btn-outline-light" >
+                <button className="btn btn-outline-light more-btn" >
                   More Actions
                 </button>
               </DropdownToggle>

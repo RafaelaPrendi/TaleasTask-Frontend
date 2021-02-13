@@ -32,7 +32,7 @@ const EditTeacher = () =>{
     return(
         <div className="container">
       <div className="w-75 mx-auto shadow p-5">
-        <h2 className="text-center mb-4">Edit This Teacher</h2>
+        <h2 className="text-center mb-4 title">Edit This Teacher</h2>
         <form onSubmit={e => onSubmit(e)}>
           <div className="form-group">
             <input
@@ -64,7 +64,7 @@ const EditTeacher = () =>{
               onChange={e => onInputChange(e)}
             />
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <input
               type="text"
               className="form-control form-control-lg"
@@ -73,7 +73,7 @@ const EditTeacher = () =>{
               value={courses}
               onChange={e => onInputChange(e)}
             />
-          </div>
+          </div> */}
         
           <button className="btn btn-primary btn-block">Update teacher</button>
         </form>

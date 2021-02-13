@@ -36,7 +36,7 @@ const EditCourse = () =>{
     return(
         <div className="container">
       <div className="w-75 mx-auto shadow p-5">
-           <h2 className="text-center mb-4">Edit This Course</h2>
+           <h2 className="text-center mb-4 title">Edit This Course</h2>
         <form onSubmit={e => onSubmit(e)}>
           <div className="form-group">
             <input
@@ -68,7 +68,7 @@ const EditCourse = () =>{
               onChange={e => onInputChange(e)}
             />
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <input
               type="text"
               className="form-control form-control-lg"
@@ -77,7 +77,7 @@ const EditCourse = () =>{
               value={students}
               onChange={e => onInputChange(e)}
             />
-          </div>
+          </div> */}
           <button className="btn btn-primary btn-block">Update Course</button>
         </form>
       </div>

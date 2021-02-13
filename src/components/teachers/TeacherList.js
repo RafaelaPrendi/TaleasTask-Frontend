@@ -3,6 +3,10 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useHistory} from "react-router-dom";
 import confirm from "reactstrap-confirm";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+
 
 const TeacherList = () =>{
     const [teachers, setTeacher] = useState([]);
@@ -31,8 +35,9 @@ const TeacherList = () =>{
     return(
            <div className="container">
       <div classnamename="py-4">
-        <h3>Teachers list</h3>
-        <table className="table border shadow">
+        <h3 className="title">Teachers</h3>
+        <Link className="btn btn-outline-info add-btn" to="/teachers/add">Add New Teacher</Link>
+        <table className="table border shadow table-striped">
           <thead className="thead-dark">
             <tr>
               <th scope="col">#</th>
@@ -50,20 +55,20 @@ const TeacherList = () =>{
                 <td>{teacher.subject}</td>
                 <td>{teacher.contact}</td>
                 <td>
-                  <Link className="btn btn-primary mr-2" to={`/teachers/${teacher.id}`}>
-                    View More
+                  <Link className="btn btn-outline-dark mr-2" to={`/teachers/${teacher.id}`}>
+                    <VisibilityIcon/>
                   </Link>
                   <Link
-                    className="btn btn-outline-primary mr-2"
+                    className="btn btn-outline-info mr-2"
                     to={`/teachers/edit/${teacher.id}`}
                   >
-                    Edit
+                    <EditIcon/>
                   </Link>
                   <Link
-                    className="btn btn-danger"
+                    className="btn btn-outline-warning"
                     onClick={() => deleteTeacher(teacher.id)}
                   >
-                    Delete
+                    <DeleteOutlineIcon/>
                   </Link>
                 </td>
               </tr>

@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import confirm from "reactstrap-confirm";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+
 
 const CourseList = () =>{
     const [courses, setCourse] = useState([]);
@@ -39,8 +43,9 @@ const CourseList = () =>{
     return(
 <div className="container">
       <div classnamename="py-4">
-        <h3>Courses list</h3>
-        <table className="table border shadow">
+        <h3 className="title">Courses</h3>
+         <Link className="btn btn-outline-info add-btn" to="/courses/add">Add New Course</Link>
+        <table className="table border shadow table-striped">
           <thead className="thead-dark">
             <tr>
               <th scope="col">#</th>
@@ -58,20 +63,20 @@ const CourseList = () =>{
                 <td>{course.description}</td>
                 <td>{course.hours}</td>
                 <td>
-                  <Link className="btn btn-primary mr-2" to={`/courses/${course.id}`}>
-                    View More
+                  <Link className="btn btn-outline-dark mr-2" to={`/courses/${course.id}`}>
+                    <VisibilityIcon/>
                   </Link>
                   <Link
-                    className="btn btn-outline-primary mr-2"
+                    className="btn btn-outline-info mr-2"
                     to={`/courses/edit/${course.id}`}
                   >
-                    Edit
+                   <EditIcon/>
                   </Link>
                   <Link
-                    className="btn btn-danger"
+                    className="btn btn-outline-warning"
                     onClick={() => deleteCourse(course.id)}
                   >
-                    Delete
+                    <DeleteOutlineIcon/>
                   </Link>
                 </td>
               </tr>

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import confirm from "reactstrap-confirm";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
 
 const Home = () => {
@@ -32,8 +35,9 @@ const Home = () => {
   return (
     <div className="container">
       <div classnamename="py-4">
-        <h3>Students list</h3>
-        <table className="table border shadow">
+        <h3 className="title">Students</h3>
+        <Link className="btn btn-outline-info add-btn" to="/students/add">Add New Student</Link>
+        <table className="table border shadow table-striped">
           <thead className="thead-dark">
             <tr>
               <th scope="col">#</th>
@@ -49,20 +53,20 @@ const Home = () => {
                 <td>{student.name}</td>
                 <td>{student.age}</td>
                 <td>
-                  <Link className="btn btn-primary mr-2" to={`/students/${student.id}`}>
-                    View More
+                  <Link className="btn btn-outline-dark mr-2" to={`/students/${student.id}`}>
+            <VisibilityIcon />
                   </Link>
                   <Link
-                    className="btn btn-outline-primary mr-2"
+                    className="btn btn-outline-info mr-2"
                     to={`/students/edit/${student.id}`}
                   >
-                    Edit
+                    <EditIcon/>
                   </Link>
                   <Link
-                    className="btn btn-danger"
+                    className="btn btn-outline-warning"
                     onClick={() => deleteStudent(student.id)}
                   >
-                    Delete
+                   <DeleteOutlineIcon/>
                   </Link>
                 </td>
               </tr>
