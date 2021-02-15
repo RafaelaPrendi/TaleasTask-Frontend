@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import { useHistory } from "react-router-dom";
 import Select from 'react-select';
@@ -12,15 +12,38 @@ const AddCourse = () => {
         hours: "",
         students:[]
     });
-      const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
-]
+
     const {name, description, hours, students} = course;
     const onInputChange = e =>{
         setCourse({...course, [e.target.name]: e.target.value});
     };
+
+    // load students for select options
+       const options = []
+        const [studentList, setstudentList] = useState([]);
+         useEffect(() => {
+          loadStudentList();}, []);
+         const loadStudentList = async () => {
+      const result = await axios.get("http://localhost:5000/students");
+      setstudentList(result.data.reverse());
+  };
+
+   studentList.forEach(student => {
+    let option = { value:student.id, label:student.name}
+    options.push(option);
+  });
+
+   function addSelectedItems(event) {
+    console.log(event);
+    event.forEach(element => {
+      let id = element.value;
+      console.log(id, element.label);
+      if(!course.students.includes(id)){
+        course.students.push(id);
+      }
+    });
+
+}
 
     const onSubmit = async e => {
         e.preventDefault();
@@ -71,15 +94,8 @@ const AddCourse = () => {
             name="students"
             className="basic-multi-select"
             classNamePrefix="select"
-            options={options}/>
-            {/* <input
-              type="text"
-              className="form-control form-control-lg"
-              placeholder="Enter the students"
-              name="students"
-              value={students}
-              onChange={e => onInputChange(e)}
-            /> */}
+            options={options}
+            onChange={e => addSelectedItems(e)}/>
           </div>
         
           <button className="btn btn-primary btn-block">Add Course</button>

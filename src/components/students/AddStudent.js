@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import { useHistory } from "react-router-dom";
 import Select from 'react-select';
@@ -12,16 +12,46 @@ const AddStudent = () => {
     age: "",
     courses: []
   });
-
   const { name, age, courses} = student;
   const onInputChange = e => {
     setStudent({ ...student, [e.target.name]: e.target.value });
   };
-  const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
-]
+
+// load courses for select option
+ const [courseList, setcourseList] = useState([]);
+    useEffect(()=>{
+        loadcourseList();
+    }, []);
+
+    const loadcourseList = async () =>{
+      try{ 
+        const result = await axios.get("http://localhost:5000/courses");
+        setcourseList(result.data.reverse());
+      }
+      catch(error){
+        console.log(error);
+      }
+       
+    }
+
+  const options = []
+  courseList.forEach(course => {
+    let option = { value:course.id, label:course.name}
+    options.push(option);
+  });
+
+  function addSelectedItems(event) {
+    console.log(event);
+    event.forEach(element => {
+      let id = element.value;
+      console.log(id, element.label);
+      if(!student.courses.includes(id)){
+        student.courses.push(id);
+      }
+    });
+
+}
+
   const onSubmit = async e => {
     e.preventDefault();
     await axios.post("http://localhost:5000/students", student);
@@ -60,16 +90,8 @@ const AddStudent = () => {
             className="basic-multi-select"
             classNamePrefix="select"
             options={options}
-            // onChange={e => onInputChange(e)}
+            onChange={e => addSelectedItems(e)}
             />
-            {/* <input
-              type="text"
-              className="form-control form-control-lg"
-              placeholder="Enter Your Courses"
-              name="courses"
-              value={courses}
-              onChange={e => onInputChange(e)}
-            /> */}
           </div>
         
           <button className="btn btn-primary btn-block">Add Student</button>

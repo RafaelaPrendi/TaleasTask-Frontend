@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import { useHistory } from "react-router-dom";
 import Teacher from "./Teacher";
@@ -13,15 +13,46 @@ const AddTeacher = () => {
         contact:"",
         courses:[]
     });
-      const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
-]
-    const { name, subject, contact, courses} = teacher;
+const { name, subject, contact, courses} = teacher;
     const onInputChange = e =>{
         setTeacher({...teacher, [e.target.name]: e.target.value});
     };
+    // load courses for select option
+ const [courseList, setcourseList] = useState([]);
+    useEffect(()=>{
+        loadcourseList();
+    }, []);
+
+    const loadcourseList = async () =>{
+      try{ 
+        const result = await axios.get("http://localhost:5000/courses");
+        setcourseList(result.data.reverse());
+      }
+      catch(error){
+        console.log(error);
+      }
+       
+    }
+
+  const options = []
+  courseList.forEach(course => {
+    let option = { value:course.id, label:course.name}
+    options.push(option);
+  });
+
+    function addSelectedItems(event) {
+    console.log(event);
+    event.forEach(element => {
+      let id = element.value;
+      console.log(id, element.label);
+      if(!teacher.courses.includes(id)){
+        teacher.courses.push(id);
+      }
+      console.log(teacher.courses, "teacher");
+    });
+
+}
+
     const onSubmit = async e =>{
        e.preventDefault();
     await axios.post("http://localhost:5000/teachers", teacher);
@@ -70,7 +101,9 @@ const AddTeacher = () => {
             name="courses"
             className="basic-multi-select"
             classNamePrefix="select"
-            options={options}/>
+            options={options}
+            onChange={e => addSelectedItems(e)}
+            />
             {/* <input
               type="text"
               className="form-control form-control-lg"

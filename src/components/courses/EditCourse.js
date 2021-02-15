@@ -26,7 +26,7 @@ const EditCourse = () =>{
     const onSubmit = async e => {
         e.preventDefault();
         await axios.put(`http://localhost:5000/courses/${id}`, course);
-        history.push("/");
+        history.push("/courses");
     };
 
     const loadCourse = async () =>{

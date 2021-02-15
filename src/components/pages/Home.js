@@ -5,14 +5,22 @@ import confirm from "reactstrap-confirm";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-
+import ReactPaginate from 'react-paginate';
 
 const Home = () => {
   const [students, setStudent] = useState([]);
+  const [offset, setOffset] = useState(0);
+  const [perPage] = useState(10);
+  const [pageCount, setPageCount] = useState(0)
 
   useEffect(() => {
     loadStudents();
-  }, []);
+  }, [offset]);
+
+  const handlePageClick = (e) => {
+    const selectedPage = e.selected;
+    setOffset(selectedPage + 1)
+};
 
   const loadStudents = async () => {
     const result = await axios.get("http://localhost:5000/students");
@@ -74,6 +82,18 @@ const Home = () => {
           </tbody>
         </table>
       </div>
+             <ReactPaginate
+                    previousLabel={"prev"}
+                    nextLabel={"next"}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={2}
+                    onPageChange={handlePageClick}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pages pagination"}
+                    activeClassName={"active"}/>
     </div>
   );
 };
