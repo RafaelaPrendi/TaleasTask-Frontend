@@ -26,6 +26,7 @@ const Teacher = () =>{
         <li className="list-group-item"><strong>Name: </strong>{teacher.name}</li>
         <li className="list-group-item"><strong>Subject: </strong>{teacher.subject}</li>
         <li className="list-group-item"><strong>Contact: </strong>{teacher.contact}</li>
+        <li className="list-group-item"><strong>Number of courses: </strong>{teacher.courses.length}</li>
         <li className="list-group-item"><strong>Courses: </strong>
          <ul className="list-group w-50">
           {teacher.courses.map((course)=>

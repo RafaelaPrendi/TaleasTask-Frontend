@@ -5,28 +5,30 @@ import confirm from "reactstrap-confirm";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import ReactPaginate from 'react-paginate';
+import Paginator from 'react-hooks-paginator';
 
 const Home = () => {
   const [students, setStudent] = useState([]);
   const [offset, setOffset] = useState(0);
-  const [perPage] = useState(10);
-  const [pageCount, setPageCount] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentData, setCurrentData] = useState([]);
+  const pageLimit = 3;
 
   useEffect(() => {
     loadStudents();
-  }, [offset]);
+  }, []);
 
-  const handlePageClick = (e) => {
-    const selectedPage = e.selected;
-    setOffset(selectedPage + 1)
-};
+  useEffect(() => {
+   setCurrentData(students.slice(offset, offset + pageLimit));
+  }, [offset, students]);
 
-  const loadStudents = async () => {
+    const loadStudents = async () => {
     const result = await axios.get("http://localhost:5000/students");
     setStudent(result.data.reverse());
+
   };
   
+
   const deleteStudent = async id => {
     let result = await confirm({
       message: "Are you sure you want to delete this?",
@@ -51,15 +53,17 @@ const Home = () => {
               <th scope="col">#</th>
               <th scope="col">Name</th>
               <th scope="col">Age</th>
+               <th scope="col">Number of courses</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {students.map((student, index) => (
+            {currentData.map((student, index) => (
               <tr key={student.id}>
                 <th scope="row">{index + 1}</th>
                 <td>{student.name}</td>
                 <td>{student.age}</td>
+                <td>{student.courses.length}</td>
                 <td>
                   <Link className="btn btn-outline-dark mr-2" to={`/students/${student.id}`}>
             <VisibilityIcon />
@@ -82,18 +86,17 @@ const Home = () => {
           </tbody>
         </table>
       </div>
-             <ReactPaginate
-                    previousLabel={"prev"}
-                    nextLabel={"next"}
-                    breakLabel={"..."}
-                    breakClassName={"break-me"}
-                    pageCount={pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={2}
-                    onPageChange={handlePageClick}
-                    containerClassName={"pagination"}
-                    subContainerClassName={"pages pagination"}
-                    activeClassName={"active"}/>
+        <Paginator
+        totalRecords={students.length}
+        pageLimit={pageLimit}
+        pageNeighbours={2}
+        setOffset={setOffset}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        pagePrevText={"Next >>"}
+        pageNextText={"<< Prev "}
+
+      />
     </div>
   );
 };

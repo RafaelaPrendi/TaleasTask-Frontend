@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import { useHistory } from "react-router-dom";
-import Teacher from "./Teacher";
 import Select from 'react-select';
 import { Label } from "reactstrap";
 

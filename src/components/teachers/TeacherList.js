@@ -6,15 +6,25 @@ import confirm from "reactstrap-confirm";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-
+import Paginator from 'react-hooks-paginator';
 
 const TeacherList = () =>{
     const [teachers, setTeacher] = useState([]);
     let history = useHistory();
+    const [offset, setOffset] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [currentData, setCurrentData] = useState([]);
+    const pageLimit = 2;
 
     useEffect(()=>{
         loadTeachers();
     }, []);
+
+     useEffect(() => {
+      setCurrentData(teachers.slice(offset, offset + pageLimit));
+      }, [offset, teachers]);
+
+
     const loadTeachers = async () =>{
         const result = await axios.get("http://localhost:5000/teachers");
         setTeacher(result.data.reverse());
@@ -44,16 +54,18 @@ const TeacherList = () =>{
               <th scope="col">Name</th>
               <th scope="col">Subject</th>
               <th scope="col">Contact</th>
+              <th scope="col">Number of courses</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {teachers.map((teacher, index) => (
+            {currentData.map((teacher, index) => (
               <tr key={teacher.id}>
                 <th scope="row">{index + 1}</th>
                 <td>{teacher.name}</td>
                 <td>{teacher.subject}</td>
                 <td>{teacher.contact}</td>
+                <td>{teacher.courses.length}</td>
                 <td>
                   <Link className="btn btn-outline-dark mr-2" to={`/teachers/${teacher.id}`}>
                     <VisibilityIcon/>
@@ -76,6 +88,17 @@ const TeacherList = () =>{
           </tbody>
         </table>
       </div>
+      <Paginator
+        totalRecords={teachers.length}
+        pageLimit={pageLimit}
+        pageNeighbours={2}
+        setOffset={setOffset}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        pagePrevText={"Next >>"}
+        pageNextText={"<< Prev "}
+
+      />
     </div>
     );
     };

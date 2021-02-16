@@ -5,15 +5,24 @@ import confirm from "reactstrap-confirm";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-
+import Paginator from 'react-hooks-paginator';
 
 const CourseList = () =>{
     const [courses, setCourse] = useState([]);
     let history = useHistory();
 
+    const [offset, setOffset] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [currentData, setCurrentData] = useState([]);
+    const pageLimit = 3;
+
     useEffect(()=>{
         loadCourses();
     }, []);
+
+      useEffect(() => {
+        setCurrentData(courses.slice(offset, offset + pageLimit));
+        }, [offset, courses]);
 
     const loadCourses = async () =>{
       try{ 
@@ -52,16 +61,18 @@ const CourseList = () =>{
               <th scope="col">Name</th>
               <th scope="col">Description</th>
               <th scope="col">Hours</th>
+              <th scope="col">Number of Students</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {courses.map((course, index) => (
+            {currentData.map((course, index) => (
               <tr key={course.id}>
                 <th scope="row">{index + 1}</th>
                 <td>{course.name}</td>
                 <td>{course.description}</td>
                 <td>{course.hours}</td>
+                <td>{course.students.length}</td>
                 <td>
                   <Link className="btn btn-outline-dark mr-2" to={`/courses/${course.id}`}>
                     <VisibilityIcon/>
@@ -84,6 +95,17 @@ const CourseList = () =>{
           </tbody>
         </table>
       </div>
+             <Paginator
+        totalRecords={courses.length}
+        pageLimit={pageLimit}
+        pageNeighbours={2}
+        setOffset={setOffset}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        pagePrevText={"Next >>"}
+        pageNextText={"<< Prev "}
+
+      />
     </div>
     );
 

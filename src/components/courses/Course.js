@@ -24,6 +24,7 @@ useEffect(() =>{
         <li className="list-group-item"><strong>Name: </strong>{course.name}</li>
         <li className="list-group-item"><strong>Description: </strong> {course.description}</li>
         <li className="list-group-item"><strong>Hours: </strong> {course.hours}</li>
+        <li className="list-group-item"><strong>Number of students: </strong> {course.students.length}</li>
         <li className="list-group-item"><strong>Students:</strong> 
         <ul className="list-group w-50">
            {course.students.map((student)=>

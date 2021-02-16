@@ -22,6 +22,7 @@ const Student = () => {
         <h5 className="card-title">Student's Details</h5>
         <li className="list-group-item"><strong>Name:</strong> {student.name}</li>
         <li className="list-group-item"><strong>Age:</strong> {student.age}</li>
+        <li className="list-group-item"><strong>Number of courses:</strong> {student.courses.length}</li>
         <li className="list-group-item"><strong>Courses:</strong>
         <ul className="list-group w-50">
           {student.courses.map((course)=>
