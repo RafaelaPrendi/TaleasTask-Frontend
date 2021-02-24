@@ -59,7 +59,7 @@ const Home = () => {
           </thead>
           <tbody>
             {currentData.map((student, index) => (
-              <tr key={student.id}>
+              <tr key={student._id}>
                 <th scope="row">{index + 1}</th>
                 <td>{student.name}</td>
                 <td>{student.age}</td>

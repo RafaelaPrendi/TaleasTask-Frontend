@@ -26,6 +26,9 @@ import EditTeacher from './components/teachers/EditTeacher';
 import Teacher from './components/teachers/Teacher';
 import TeacherList from './components/teachers/TeacherList';
 
+import { withAuthenticator, AmplifySignOut, AmplifySignIn, AmplifySignUp } from '@aws-amplify/ui-react';
+
+
 function App(props) {
   return (
     <Router>
@@ -50,6 +53,10 @@ function App(props) {
           <Route exact path="/teachers/edit/:id" component={EditTeacher} />
           <Route exact path="/teachers/:id" component={Teacher} />
           <Route exact path="/teachers" component={TeacherList} />
+
+          <Route exact path="/signout" component={AmplifySignOut} />
+          <Route exact path="/signin" component={AmplifySignIn} />
+          <Route exact path="/signup" component={AmplifySignUp} />
           
 
           <Route component={NotFound} />
@@ -59,4 +66,4 @@ function App(props) {
   );
 }
 
-export default App;
+export default withAuthenticator(App);

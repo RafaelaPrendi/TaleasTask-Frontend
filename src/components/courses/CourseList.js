@@ -45,10 +45,8 @@ const CourseList = () =>{
       await axios.delete(`http://localhost:5000/courses/${id}`);
         loadCourses();
         history.push("/courses");
-    }
-        
+    }      
     };
-
     return(
 <div className="container">
       <div classnamename="py-4">
@@ -67,7 +65,7 @@ const CourseList = () =>{
           </thead>
           <tbody>
             {currentData.map((course, index) => (
-              <tr key={course.id}>
+              <tr key={course._id}>
                 <th scope="row">{index + 1}</th>
                 <td>{course.name}</td>
                 <td>{course.description}</td>

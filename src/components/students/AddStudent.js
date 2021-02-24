@@ -57,6 +57,7 @@ const AddStudent = () => {
     await axios.post("http://localhost:5000/students", student);
     history.push("/");
   };
+  console.log(courseList);
   return (
     <div className="container">
       <div className="w-75 mx-auto shadow p-5">

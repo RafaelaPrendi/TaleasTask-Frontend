@@ -4,6 +4,9 @@ import {UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem} from 'reactstrap';
+
+import { AmplifySignOut} from '@aws-amplify/ui-react';
+
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
@@ -65,6 +68,9 @@ const Navbar = () => {
                 </DropdownItem>
                 <DropdownItem>
                 <Link className="btn btn-outline-primary" to="/teachers/add">Add New Teacher</Link>
+                </DropdownItem>
+                <DropdownItem>
+                  <AmplifySignOut></AmplifySignOut>
                 </DropdownItem>
               </DropdownMenu>
     </UncontrolledDropdown>
