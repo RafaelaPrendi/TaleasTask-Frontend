@@ -25,7 +25,7 @@ const AddStudent = () => {
 
     const loadcourseList = async () =>{
       try{ 
-        const result = await axios.get("http://localhost:5000/courses");
+        const result = await axios.get("https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/courses");
         setcourseList(result.data.reverse());
       }
       catch(error){
@@ -54,7 +54,7 @@ const AddStudent = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    await axios.post("http://localhost:5000/students", student);
+    await axios.post("https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/students", student);
     history.push("/");
   };
   console.log(courseList);

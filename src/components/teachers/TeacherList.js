@@ -26,7 +26,7 @@ const TeacherList = () =>{
 
 
     const loadTeachers = async () =>{
-        const result = await axios.get("http://localhost:5000/teachers");
+        const result = await axios.get("https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/teachers");
         setTeacher(result.data.reverse());
     };
     const deleteTeacher = async id => {
@@ -37,7 +37,7 @@ const TeacherList = () =>{
         cancelColor: "link text-danger"
     });
     if(result){
-       await axios.delete(`http://localhost:5000/teachers/${id}`);
+       await axios.delete(`https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/teachers/${id}`);
         history.push("/teachers");
     }
        

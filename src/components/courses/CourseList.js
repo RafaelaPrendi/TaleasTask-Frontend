@@ -26,7 +26,7 @@ const CourseList = () =>{
 
     const loadCourses = async () =>{
       try{ 
-        const result = await axios.get("http://localhost:5000/courses");
+        const result = await axios.get("https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/courses");
         setCourse(result.data.reverse());
       }
       catch(error){
@@ -42,7 +42,7 @@ const CourseList = () =>{
           cancelColor: "link text-danger"
     });
     if(result){
-      await axios.delete(`http://localhost:5000/courses/${id}`);
+      await axios.delete(`https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/courses/${id}`);
         loadCourses();
         history.push("/courses");
     }      

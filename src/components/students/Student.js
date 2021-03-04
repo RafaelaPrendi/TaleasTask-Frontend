@@ -13,7 +13,7 @@ const Student = () => {
     loadStudent();
   }, []);
   const loadStudent = async () => {
-    const res = await axios.get(`http://localhost:5000/students/${id}`);
+    const res = await axios.get(`https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/students/${id}`);
     setStudent(res.data);
   };
   return (

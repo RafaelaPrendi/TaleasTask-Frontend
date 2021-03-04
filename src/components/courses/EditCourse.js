@@ -25,12 +25,12 @@ const EditCourse = () =>{
 
     const onSubmit = async e => {
         e.preventDefault();
-        await axios.put(`http://localhost:5000/courses/${id}`, course);
+        await axios.put(`https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/courses/${id}`, course);
         history.push("/courses");
     };
 
     const loadCourse = async () =>{
-         const result = await axios.get(`http://localhost:5000/courses/${id}`);
+         const result = await axios.get(`https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/courses/${id}`);
          setCourse(result.data); 
     };
     return(

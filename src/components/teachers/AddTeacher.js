@@ -24,7 +24,7 @@ const { name, subject, contact, courses} = teacher;
 
     const loadcourseList = async () =>{
       try{ 
-        const result = await axios.get("http://localhost:5000/courses");
+        const result = await axios.get("https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/courses/");
         setcourseList(result.data.reverse());
       }
       catch(error){
@@ -54,7 +54,7 @@ const { name, subject, contact, courses} = teacher;
 
     const onSubmit = async e =>{
        e.preventDefault();
-    await axios.post("http://localhost:5000/teachers", teacher);
+    await axios.post("https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/teachers/", teacher);
     history.push("/teachers"); 
     };
     return(

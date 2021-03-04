@@ -24,7 +24,7 @@ const AddCourse = () => {
          useEffect(() => {
           loadStudentList();}, []);
          const loadStudentList = async () => {
-      const result = await axios.get("http://localhost:5000/students");
+      const result = await axios.get("https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/students/");
       setstudentList(result.data.reverse());
   };
 
@@ -48,7 +48,7 @@ const AddCourse = () => {
     const onSubmit = async e => {
         e.preventDefault();
         console.log(course);
-        await axios.post("http://localhost:5000/courses", course);
+        await axios.post("https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/courses/", course);
         history.push("/courses");
     };
 

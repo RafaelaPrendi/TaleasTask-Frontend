@@ -23,7 +23,7 @@ const Home = () => {
   }, [offset, students]);
 
     const loadStudents = async () => {
-    const result = await axios.get("http://localhost:5000/students");
+    const result = await axios.get("https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/students/");
     setStudent(result.data.reverse());
 
   };
@@ -37,7 +37,7 @@ const Home = () => {
     cancelColor: "link text-danger"
     });
     if(result){
-      await axios.delete(`http://localhost:5000/students/${id}`);
+      await axios.delete(`https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/students/${id}`);
     loadStudents();
     }
   };
