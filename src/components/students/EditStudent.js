@@ -23,12 +23,12 @@ const EditStudent = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    await axios.put(`https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/students/${id}`, student);
+    await axios.put(`https://23ugwieg5e.execute-api.eu-central-1.amazonaws.com/dev/students/${id}`, student);
     history.push("/");
   };
 
   const loadStudent = async () => {
-    const result = await axios.get(`https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/students/${id}`);
+    const result = await axios.get(`https://23ugwieg5e.execute-api.eu-central-1.amazonaws.com/dev/students/${id}`);
     setStudent(result.data);
   };
   return (

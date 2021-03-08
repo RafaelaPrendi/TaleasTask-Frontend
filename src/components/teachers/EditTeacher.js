@@ -20,13 +20,13 @@ const EditTeacher = () =>{
     }, []);
 
     const loadTeacher = async () => {
-        const result = await axios.get(`https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/teachers/${id}`);
+        const result = await axios.get(`https://23ugwieg5e.execute-api.eu-central-1.amazonaws.com/dev/teachers/${id}`);
         setTeacher(result.data);
   };
 
      const onSubmit = async e =>{
         e.preventDefault();
-        await axios.put(`https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/teachers/${id}`, teacher);
+        await axios.put(`https://23ugwieg5e.execute-api.eu-central-1.amazonaws.com/dev/teachers/${id}`, teacher);
          history.push("/"); 
     };
     return(

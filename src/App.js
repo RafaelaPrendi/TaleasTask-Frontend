@@ -30,6 +30,9 @@ import { withAuthenticator, AmplifySignOut, AmplifySignIn, AmplifySignUp } from 
 
 
 function App(props) {
+
+
+
   return (
     <Router>
       <div className="App">
@@ -65,5 +68,6 @@ function App(props) {
     </Router>
   );
 }
+
 
 export default withAuthenticator(App);

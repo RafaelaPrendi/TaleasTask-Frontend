@@ -16,7 +16,7 @@ const Teacher = () =>{
     }, []);
 
     const loadTeacher = async () => {
-        const result = await axios.get(`https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/teachers/${id}`);
+        const result = await axios.get(`https://23ugwieg5e.execute-api.eu-central-1.amazonaws.com/dev/teachers/${id}`);
         setTeacher(result.data);
   };
   return(

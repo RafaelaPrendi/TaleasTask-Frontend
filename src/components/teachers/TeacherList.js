@@ -26,7 +26,12 @@ const TeacherList = () =>{
 
 
     const loadTeachers = async () =>{
-        const result = await axios.get("https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/teachers");
+      // const http = axios.create({
+      //       baseUrl: "https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/teachers",
+      //     headers: {"Authorization": 1}
+      // });
+        const result = await axios.get("https://23ugwieg5e.execute-api.eu-central-1.amazonaws.com/dev/teachers");
+          // baseUrl:"https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/teachers");
         setTeacher(result.data.reverse());
     };
     const deleteTeacher = async id => {
@@ -37,7 +42,7 @@ const TeacherList = () =>{
         cancelColor: "link text-danger"
     });
     if(result){
-       await axios.delete(`https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/teachers/${id}`);
+       await axios.delete(`https://23ugwieg5e.execute-api.eu-central-1.amazonaws.com/dev/teachers/${id}`);
         history.push("/teachers");
     }
        

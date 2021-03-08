@@ -6,6 +6,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import Paginator from 'react-hooks-paginator';
+import Auth from "@aws-amplify/auth";
 
 const Home = () => {
   const [students, setStudent] = useState([]);
@@ -23,9 +24,8 @@ const Home = () => {
   }, [offset, students]);
 
     const loadStudents = async () => {
-    const result = await axios.get("https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/students/");
+          const result = await axios.get('https://23ugwieg5e.execute-api.eu-central-1.amazonaws.com/dev/students');
     setStudent(result.data.reverse());
-
   };
   
 
@@ -37,7 +37,7 @@ const Home = () => {
     cancelColor: "link text-danger"
     });
     if(result){
-      await axios.delete(`https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/students/${id}`);
+      await axios.delete(`https://23ugwieg5e.execute-api.eu-central-1.amazonaws.com/dev/students/${id}`);
     loadStudents();
     }
   };
