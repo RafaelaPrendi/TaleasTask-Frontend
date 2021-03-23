@@ -13,7 +13,7 @@ const Teacher = () =>{
 
      useEffect(() =>{
         loadTeacher();
-    }, []);
+    });
 
     const loadTeacher = async () => {
         const result = await axios.get(`https://23ugwieg5e.execute-api.eu-central-1.amazonaws.com/dev/teachers/${id}`);

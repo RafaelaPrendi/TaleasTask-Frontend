@@ -26,12 +26,7 @@ const TeacherList = () =>{
 
 
     const loadTeachers = async () =>{
-      // const http = axios.create({
-      //       baseUrl: "https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/teachers",
-      //     headers: {"Authorization": 1}
-      // });
         const result = await axios.get("https://23ugwieg5e.execute-api.eu-central-1.amazonaws.com/dev/teachers");
-          // baseUrl:"https://iblxzll8p9.execute-api.eu-central-1.amazonaws.com/dev/teachers");
         setTeacher(result.data.reverse());
     };
     const deleteTeacher = async id => {
@@ -82,6 +77,7 @@ const TeacherList = () =>{
                     <EditIcon/>
                   </Link>
                   <Link
+                   to="#"
                     className="btn btn-outline-warning"
                     onClick={() => deleteTeacher(teacher.id)}
                   >

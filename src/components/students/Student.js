@@ -11,7 +11,7 @@ const Student = () => {
   const { id } = useParams();
   useEffect(() => {
     loadStudent();
-  }, []);
+  });
   const loadStudent = async () => {
     const res = await axios.get(`https://23ugwieg5e.execute-api.eu-central-1.amazonaws.com/dev/students/${id}`);
     setStudent(res.data);

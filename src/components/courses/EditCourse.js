@@ -13,7 +13,7 @@ const EditCourse = () =>{
         students:[]
     });
 
-    const {name, description, hours, students} = course;
+    const {name, description, hours} = course;
 
     const onInputChange = e =>{
         setCourse({...course, [e.target.name]: e.target.value});
@@ -21,7 +21,7 @@ const EditCourse = () =>{
 
     useEffect(() =>{
         loadCourse();
-    }, []);
+    });
 
     const onSubmit = async e => {
         e.preventDefault();

@@ -13,9 +13,9 @@ const EditStudent = () => {
   
   useEffect(() => {
     loadStudent();
-  }, []);
+  });
 
-  const { name, age, courses } = student;
+  const { name, age} = student;
   const onInputChange = e => {
     setStudent({ ...student, [e.target.name]: e.target.value });
   };

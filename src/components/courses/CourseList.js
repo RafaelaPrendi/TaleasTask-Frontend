@@ -65,7 +65,7 @@ const CourseList = () =>{
           </thead>
           <tbody>
             {currentData.map((course, index) => (
-              <tr key={course._id}>
+              <tr key={course.id}>
                 <th scope="row">{index + 1}</th>
                 <td>{course.name}</td>
                 <td>{course.description}</td>
@@ -84,6 +84,7 @@ const CourseList = () =>{
                   <Link
                     className="btn btn-outline-warning"
                     onClick={() => deleteCourse(course.id)}
+                    to="#"
                   >
                     <DeleteOutlineIcon/>
                   </Link>

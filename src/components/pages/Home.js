@@ -6,7 +6,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import Paginator from 'react-hooks-paginator';
-import Auth from "@aws-amplify/auth";
+
 
 const Home = () => {
   const [students, setStudent] = useState([]);
@@ -59,7 +59,7 @@ const Home = () => {
           </thead>
           <tbody>
             {currentData.map((student, index) => (
-              <tr key={student._id}>
+              <tr key={student.id}>
                 <th scope="row">{index + 1}</th>
                 <td>{student.name}</td>
                 <td>{student.age}</td>
@@ -75,6 +75,7 @@ const Home = () => {
                     <EditIcon/>
                   </Link>
                   <Link
+                  to="#"
                     className="btn btn-outline-warning"
                     onClick={() => deleteStudent(student.id)}
                   >

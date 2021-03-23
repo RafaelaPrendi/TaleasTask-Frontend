@@ -12,7 +12,7 @@ const AddTeacher = () => {
         contact:"",
         courses:[]
     });
-const { name, subject, contact, courses} = teacher;
+const { name, subject, contact} = teacher;
     const onInputChange = e =>{
         setTeacher({...teacher, [e.target.name]: e.target.value});
     };

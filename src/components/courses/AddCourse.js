@@ -13,7 +13,7 @@ const AddCourse = () => {
         students:[]
     });
 
-    const {name, description, hours, students} = course;
+    const {name, description, hours} = course;
     const onInputChange = e =>{
         setCourse({...course, [e.target.name]: e.target.value});
     };

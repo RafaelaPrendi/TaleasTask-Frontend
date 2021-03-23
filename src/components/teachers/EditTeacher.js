@@ -11,13 +11,13 @@ const EditTeacher = () =>{
         contact:"",
         courses:[]
     });
-    const { name, subject, contact, courses} = teacher;
+    const { name, subject, contact} = teacher;
     const onInputChange = e =>{
         setTeacher({...teacher, [e.target.name]: e.target.value});
     };
     useEffect(() =>{
         loadTeacher();
-    }, []);
+    });
 
     const loadTeacher = async () => {
         const result = await axios.get(`https://23ugwieg5e.execute-api.eu-central-1.amazonaws.com/dev/teachers/${id}`);

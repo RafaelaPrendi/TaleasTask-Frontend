@@ -8,8 +8,7 @@ import Navbar from "./components/layout/Navbar";
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  withRouter
+  Switch
 } from "react-router-dom";
 import NotFound from "./components/pages/NotFound";
 import AddStudent from "./components/students/AddStudent";
@@ -26,7 +25,7 @@ import EditTeacher from './components/teachers/EditTeacher';
 import Teacher from './components/teachers/Teacher';
 import TeacherList from './components/teachers/TeacherList';
 
-import { withAuthenticator, AmplifySignOut, AmplifySignIn, AmplifySignUp } from '@aws-amplify/ui-react';
+import { withAuthenticator, AmplifySignOut, AmplifySignIn, AmplifySignUp, AmplifyAuthenticator } from '@aws-amplify/ui-react';
 
 
 function App(props) {
@@ -34,6 +33,7 @@ function App(props) {
 
 
   return (
+    <AmplifyAuthenticator>
     <Router>
       <div className="App">
         <Navbar />
@@ -66,6 +66,7 @@ function App(props) {
         </Switch>
       </div>
     </Router>
+</AmplifyAuthenticator>
   );
 }
 

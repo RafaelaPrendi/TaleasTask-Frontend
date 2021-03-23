@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -9,11 +9,13 @@ Amplify.configure(awsconfig);
 
 // add authorization token to each call
 axios.interceptors.request.use(
-  async function (config) {
+  async (request) => {
     const token =(await Auth.currentSession()).getIdToken().getJwtToken();
-    axios.defaults.headers.common['Authorization'] =  token;
-    return config;
+    console.log(token, "CURRENT TOKEN");
+    axios.defaults.headers.common["Authorization"] =  token; 
+    return request;
 });
+
 
 ReactDOM.render(
   <React.StrictMode>
